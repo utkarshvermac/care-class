@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-ink-900 text-paper-100 font-body antialiased;
+    background-image: radial-gradient(circle at 15% 0%, rgba(232, 184, 75, 0.08), transparent 55%);
+    background-attachment: fixed;
+  }
+  .light body,
+  body.light {
+    @apply bg-paper-50 text-ink-900;
+    background-image: radial-gradient(circle at 15% 0%, rgba(232, 184, 75, 0.12), transparent 55%);
+  }
+  h1, h2, h3, h4 {
+    @apply font-display tracking-tight;
+  }
+  ::selection {
+    @apply bg-gold-500/30 text-inherit;
+  }
+  *:focus-visible {
+    @apply outline-none ring-2 ring-gold-500/70 ring-offset-2 ring-offset-ink-900;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-ink-800/80 border border-ink-600/70 rounded-2xl shadow-card backdrop-blur-sm;
+  }
+  .light .card {
+    @apply bg-white border-paper-200 shadow-none;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold
+      transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed active:scale-[0.98];
+  }
+  .btn-primary {
+    @apply btn bg-gold-500 text-ink-950 hover:bg-gold-400 hover:shadow-glow;
+  }
+  .btn-secondary {
+    @apply btn bg-ink-700 text-paper-100 border border-ink-600 hover:bg-ink-600;
+  }
+  .light .btn-secondary {
+    @apply bg-paper-100 text-ink-900 border-paper-200 hover:bg-paper-200;
+  }
+  .btn-ghost {
+    @apply btn bg-transparent text-paper-100/80 hover:bg-ink-700/60 hover:text-paper-100;
+  }
+  .light .btn-ghost {
+    @apply text-ink-700 hover:bg-paper-100;
+  }
+  .btn-danger {
+    @apply btn bg-absent-500/15 text-absent-400 border border-absent-500/30 hover:bg-absent-500/25;
+  }
+  .input {
+    @apply w-full rounded-xl bg-ink-700/60 border border-ink-600 px-4 py-2.5 text-sm text-paper-100
+      placeholder:text-paper-100/35 outline-none transition-colors focus:border-gold-500/60;
+  }
+  .light .input {
+    @apply bg-white border-paper-200 text-ink-900 placeholder:text-ink-500/50;
+  }
+  .label {
+    @apply text-xs font-semibold uppercase tracking-wider text-paper-100/50;
+  }
+  .light .label {
+    @apply text-ink-600/70;
+  }
+  .skeleton {
+    @apply relative overflow-hidden bg-ink-700/60 rounded-xl;
+  }
+  .skeleton::after {
+    content: "";
+    @apply absolute inset-0 animate-shimmer;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
+    background-size: 400px 100%;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
